@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b4e">
+  <meta name="description" content="Student dashboard and order history for CanteenGo.">
+  <title>Student Dashboard | CanteenGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../css/student-flow.css">
+  <script src="../js/canteengo-data.js" defer></script>
+  <script src="../js/dashboard.js" defer></script>
+</head>
+<body>
+  <header class="flow-header">
+    <nav class="flow-nav" aria-label="Main navigation">
+      <a class="flow-brand" href="../index.html" aria-label="CanteenGo home">
+        <span class="flow-brand-icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
+        <span class="flow-brand-copy"><strong>Canteen<span>Go</span></strong><small>SR UNIVERSITY</small></span>
+      </a>
+      <div class="flow-nav-links">
+        <a href="menu.html">Explore Menu</a>
+        <button class="flow-remove" id="logout-button" type="button">Sign out</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flow-main">
+    <div class="flow-heading">
+      <p class="flow-eyebrow">STUDENT DASHBOARD</p>
+      <h1 id="welcome-heading">Welcome</h1>
+      <p id="student-meta">Your campus orders and account details.</p>
+    </div>
+    <div class="flow-message" id="dashboard-message" role="status" aria-live="polite" hidden></div>
+    <section class="flow-card flow-card-pad" aria-labelledby="orders-title">
+      <div class="flow-toolbar">
+        <div>
+          <p class="flow-eyebrow">ORDER HISTORY</p>
+          <h2 id="orders-title">My orders</h2>
+        </div>
+        <a class="flow-button" href="menu.html">Explore Menu</a>
+      </div>
+      <div id="order-history"></div>
+      <div class="flow-empty" id="orders-empty" hidden>
+        <p>You have no orders yet. Your placed orders will appear here.</p>
+        <a class="flow-button" href="menu.html">Browse the menu</a>
+      </div>
+    </section>
+    <p class="flow-demo-note">Demo account and order history are stored in this browser only. Signing out clears your session but keeps your cart and order history.</p>
+  </main>
+  <footer class="flow-footer">CanteenGo · SR University campus canteen</footer>
+</body>
+</html>

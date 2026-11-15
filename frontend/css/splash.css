@@ -1,0 +1,90 @@
+body.intro-pending > :not(#splash-root),
+body.intro-complete > :not(#splash-root) {
+  transition: opacity .55s ease, visibility .55s ease;
+}
+body.intro-pending > :not(#splash-root) { opacity: 0; visibility: hidden; }
+body.intro-complete > :not(#splash-root) { opacity: 1; visibility: visible; }
+
+.splash-screen {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  overflow: hidden;
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 50% 46%, rgba(255,255,255,.92) 0%, rgba(238,247,255,.88) 33%, transparent 72%),
+    linear-gradient(135deg, #dceeff 0%, #edf7ff 47%, #d7ecff 100%);
+  color: #174a7c;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .55s ease, visibility .55s ease;
+}
+.splash-screen.is-visible { opacity: 1; visibility: visible; }
+.splash-screen.is-leaving { opacity: 0; visibility: hidden; pointer-events: none; }
+.splash-glow { position: absolute; width: min(58vw, 700px); aspect-ratio: 1; border-radius: 50%; filter: blur(2px); pointer-events: none; }
+.splash-glow-one { top: -34%; left: -13%; background: radial-gradient(circle, rgba(102,177,239,.22), transparent 68%); }
+.splash-glow-two { right: -15%; bottom: -48%; background: radial-gradient(circle, rgba(132,207,231,.24), transparent 68%); }
+.splash-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.splash-particle { position: absolute; top: var(--particle-y); left: var(--particle-x); width: var(--particle-size); height: var(--particle-size); border-radius: 50%; background: #fff; box-shadow: 0 0 8px 2px rgba(106,180,238,.5); opacity: 0; }
+.splash-screen.is-running .splash-particle { animation: particle-float var(--particle-duration) var(--particle-delay) ease-in-out infinite; }
+.splash-beam { position: absolute; top: 43%; left: -52vw; width: 48vw; height: 2px; opacity: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.98), rgba(91,169,229,.5), transparent); box-shadow: 0 0 22px 4px rgba(106,184,239,.52); transform: rotate(-12deg); pointer-events: none; }
+.splash-screen.is-running .splash-beam { animation: beam-travel 2.4s .35s ease-in-out both; }
+.splash-content { position: relative; z-index: 1; display: flex; width: min(100% - 40px, 560px); align-items: center; flex-direction: column; padding: 36px 0; text-align: center; }
+.university-lockup { display: flex; align-items: center; flex-direction: column; margin-bottom: 30px; }
+.sru-logo-window { position: relative; width: 132px; height: 62px; overflow: hidden; clip-path: inset(0 100% 0 0); }
+.sru-logo-image { position: absolute; top: -93px; left: -64px; width: 440px; max-width: none; height: auto; }
+.university-caption { overflow: hidden; margin: 7px 0 0; color: #28557f; font-family: var(--font-heading); font-size: 11px; font-weight: 800; letter-spacing: .3em; opacity: 0; clip-path: inset(0 100% 0 0); }
+.splash-screen.is-running .sru-logo-window { animation: logo-letters 1.5s .3s steps(3, end) forwards; }
+.splash-screen.is-running .university-caption { animation: caption-reveal .72s 1.85s ease-out forwards; }
+.canteengo-lockup { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.canteengo-symbol { width: 62px; height: 62px; overflow: visible; }
+.canteengo-symbol circle, .canteengo-symbol path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.symbol-ring { stroke: rgba(37,103,158,.18); stroke-width: 1.5; stroke-dasharray: 170; stroke-dashoffset: 170; }
+.symbol-steam { stroke: #77a939; stroke-width: 2; stroke-dasharray: 30; stroke-dashoffset: 30; }
+.symbol-bowl { stroke: #225d91; stroke-width: 2.6; stroke-dasharray: 90; stroke-dashoffset: 90; }
+.symbol-base { stroke: #77a939; stroke-width: 2.6; stroke-dasharray: 20; stroke-dashoffset: 20; }
+.splash-screen.is-running .symbol-ring { animation: draw-symbol .9s 2.72s ease-out forwards; }
+.splash-screen.is-running .symbol-steam { animation: draw-symbol .48s 2.92s ease-out forwards; }
+.splash-screen.is-running .symbol-bowl { animation: draw-symbol .68s 3.08s ease-out forwards; }
+.splash-screen.is-running .symbol-base { animation: draw-symbol .35s 3.57s ease-out forwards; }
+.canteengo-wordmark { display: flex; align-items: baseline; color: #133f6d; font-family: var(--font-heading); font-size: clamp(30px, 5vw, 43px); font-weight: 800; letter-spacing: .07em; line-height: 1.1; }
+.canteengo-wordmark span { display: inline-block; opacity: 0; transform: translateY(13px); }
+.splash-screen.is-running .canteengo-wordmark span { animation: letter-rise .42s var(--letter-delay) cubic-bezier(.2,.8,.2,1) forwards; }
+.splash-tagline { margin: 22px 0 0; color: #486982; font-size: clamp(10px, 2vw, 12px); font-weight: 700; letter-spacing: .15em; opacity: 0; transform: translateY(7px); }
+.splash-screen.is-running .splash-tagline { animation: tagline-appear .7s 4.5s ease-out forwards; }
+.splash-progress { width: min(270px, 72vw); height: 3px; margin-top: 37px; overflow: hidden; border-radius: 10px; background: rgba(56,112,159,.14); box-shadow: 0 0 0 1px rgba(56,112,159,.04); }
+.splash-progress-fill { display: block; width: 0; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #468cc2, #8cb649, #a5ce64); box-shadow: 0 0 12px rgba(105,170,89,.35); transition: width .08s linear; }
+.splash-skip { position: absolute; right: max(22px, calc((100vw - 1180px) / 2)); bottom: max(20px, env(safe-area-inset-bottom)); z-index: 2; padding: 8px 11px; border: 1px solid rgba(47,98,141,.2); border-radius: 20px; background: rgba(255,255,255,.32); color: #456884; font-size: 10px; cursor: pointer; transition: background .2s ease, color .2s ease; }
+.splash-skip:hover { background: rgba(255,255,255,.75); color: #173f70; }
+.splash-replay { position: fixed; z-index: 40; right: 18px; bottom: 18px; padding: 8px 12px; border: 1px solid rgba(22,75,131,.2); border-radius: 20px; background: rgba(255,255,255,.9); color: #164b83; font-size: 11px; cursor: pointer; box-shadow: 0 4px 18px rgba(16,43,78,.1); }
+.splash-replay[hidden] { display: none; }
+
+@keyframes logo-letters { to { clip-path: inset(0 0 0 0); } }
+@keyframes caption-reveal { from { opacity: 0; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0 0 0 0); } }
+@keyframes draw-symbol { to { stroke-dashoffset: 0; } }
+@keyframes letter-rise { to { opacity: 1; transform: translateY(0); } }
+@keyframes tagline-appear { to { opacity: 1; transform: translateY(0); } }
+@keyframes particle-float {
+  0%, 100% { opacity: 0; transform: translate3d(0, 10px, 0) scale(.5); }
+  35%, 65% { opacity: var(--particle-opacity); transform: translate3d(8px, -18px, 0) scale(1); }
+}
+@keyframes beam-travel {
+  0% { opacity: 0; transform: translateX(0) rotate(-12deg); }
+  20%, 76% { opacity: .9; }
+  100% { opacity: 0; transform: translateX(205vw) rotate(-12deg); }
+}
+
+@media (max-width: 560px) {
+  .splash-content { width: calc(100% - 32px); }
+  .university-lockup { margin-bottom: 24px; }
+  .sru-logo-window { transform: scale(.9); }
+  .canteengo-lockup { gap: 11px; }
+  .canteengo-symbol { width: 52px; height: 52px; }
+  .canteengo-wordmark { font-size: clamp(26px, 8vw, 36px); }
+  .splash-tagline { max-width: 300px; margin-top: 19px; line-height: 1.6; }
+  .splash-progress { margin-top: 30px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .splash-screen, .splash-screen.is-visible { display: none; }
+}

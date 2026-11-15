@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b4e">
+  <meta name="description" content="CanteenGo local simulated payment demonstration.">
+  <title>Demo Payment | CanteenGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../css/student-flow.css">
+  <script src="../js/canteengo-data.js" defer></script>
+  <script src="../js/payment.js" defer></script>
+</head>
+<body>
+  <header class="flow-header">
+    <nav class="flow-nav" aria-label="Main navigation">
+      <a class="flow-brand" href="../index.html" aria-label="CanteenGo home">
+        <span class="flow-brand-icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
+        <span class="flow-brand-copy"><strong>Canteen<span>Go</span></strong><small>SR UNIVERSITY</small></span>
+      </a>
+      <div class="flow-nav-links">
+        <a href="checkout.html">Back to Checkout</a>
+        <a href="dashboard.html">My Dashboard</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flow-main">
+    <div class="flow-heading">
+      <p class="flow-eyebrow">LOCAL DEMONSTRATION ONLY</p>
+      <h1>Simulated payment</h1>
+      <p>This project does not connect to a bank or payment service. No money is transferred.</p>
+    </div>
+    <div class="flow-message is-error" id="payment-page-message" role="status" aria-live="polite" hidden></div>
+    <div class="flow-layout payment-layout" id="payment-page-content" hidden>
+      <section class="flow-card flow-card-pad" aria-labelledby="payment-options-title">
+        <div class="flow-section-title">
+          <h2 id="payment-options-title">Choose a demo method</h2>
+          <span class="flow-badge">DEMO / SIMULATED PAYMENT</span>
+        </div>
+        <p class="flow-demo-note payment-warning">Use the fixed demo values shown below only. Do not enter real payment details. The simulator never sends or saves payment credentials.</p>
+
+        <fieldset class="payment-method-options">
+          <legend class="flow-label">Payment method</legend>
+          <label class="flow-radio">
+            <input type="radio" name="paymentMethod" value="upi" checked>
+            <span><strong>UPI</strong><small>Illustrative demo UPI flow. No UPI app will open.</small></span>
+          </label>
+          <label class="flow-radio">
+            <input type="radio" name="paymentMethod" value="debit">
+            <span><strong>Debit Card</strong><small>Fixed dummy details for classroom testing only.</small></span>
+          </label>
+          <label class="flow-radio">
+            <input type="radio" name="paymentMethod" value="credit">
+            <span><strong>Credit Card</strong><small>Fixed dummy details for classroom testing only.</small></span>
+          </label>
+        </fieldset>
+
+        <div class="payment-method-panel" id="upi-panel">
+          <div class="payment-method-panel-copy">
+            <h3>Demo UPI</h3>
+            <p>This ID is fictional and cannot receive money.</p>
+            <div class="flow-field">
+              <label for="demo-upi-id">Demo UPI ID</label>
+              <input id="demo-upi-id" type="text" value="demo@canteengo.invalid" readonly aria-readonly="true">
+            </div>
+          </div>
+          <div class="demo-qr-wrap">
+            <div class="demo-qr" role="img" aria-label="Decorative demo QR illustration; not scannable">
+              <span>DEMO</span>
+            </div>
+            <small>Illustration only · not scannable</small>
+          </div>
+        </div>
+
+        <div class="payment-method-panel" id="card-panel" hidden>
+          <div class="flow-grid">
+            <div class="flow-field flow-field-full">
+              <label for="demo-card-number">Dummy card number</label>
+              <input id="demo-card-number" type="text" value="0000 0000 0000 0000" readonly aria-readonly="true">
+            </div>
+            <div class="flow-field flow-field-full">
+              <label for="demo-card-name">Cardholder name</label>
+              <input id="demo-card-name" type="text" value="DEMO STUDENT" readonly aria-readonly="true">
+            </div>
+            <div class="flow-field">
+              <label for="demo-card-expiry">Expiry date</label>
+              <input id="demo-card-expiry" type="text" value="12/99" readonly aria-readonly="true">
+            </div>
+            <div class="flow-field">
+              <label for="demo-card-cvv">Dummy CVV</label>
+              <input id="demo-card-cvv" type="text" value="000" readonly aria-readonly="true">
+            </div>
+          </div>
+          <p class="flow-help">These fixed placeholders are not valid payment credentials and are not submitted or stored.</p>
+        </div>
+
+        <fieldset class="payment-simulator-controls">
+          <legend class="flow-label">Choose the simulator test result</legend>
+          <p class="flow-help">This test control determines the local demonstration outcome only.</p>
+          <div class="payment-outcome-options">
+            <label class="flow-radio">
+              <input type="radio" name="simulatedOutcome" value="success" checked>
+              <span><strong>Simulate success</strong></span>
+            </label>
+            <label class="flow-radio">
+              <input type="radio" name="simulatedOutcome" value="failure">
+              <span><strong>Simulate failure</strong></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="payment-processing" id="payment-processing" role="status" aria-live="polite" hidden>
+          <span class="payment-spinner" aria-hidden="true"></span>
+          <span>Processing simulated payment…</span>
+        </div>
+        <div class="flow-actions">
+          <button class="flow-button" id="pay-now-button" type="button">Pay Now · Simulated</button>
+          <a class="flow-button flow-button-secondary" href="checkout.html">Back to Checkout</a>
+        </div>
+      </section>
+
+      <aside class="flow-card flow-card-pad" aria-labelledby="payment-summary-title">
+        <div class="flow-section-title">
+          <h2 id="payment-summary-title">Order summary</h2>
+          <span class="flow-badge" id="payment-amount-badge">DEMO</span>
+        </div>
+        <div class="payment-student" id="payment-student"></div>
+        <div id="payment-items"></div>
+        <div class="flow-total-row"><span>Subtotal</span><strong id="payment-subtotal">₹0</strong></div>
+        <div class="flow-total-row"><span>Applicable charges</span><strong id="payment-charges">₹0</strong></div>
+        <div class="flow-total-row flow-total-grand"><span>Total</span><strong id="payment-total">₹0</strong></div>
+        <div class="payment-pickup" id="payment-pickup"></div>
+        <p class="flow-demo-note">No order or pickup token is created unless the local simulator returns success.</p>
+      </aside>
+    </div>
+  </main>
+  <footer class="flow-footer">CanteenGo · SR University campus canteen</footer>
+</body>
+</html>

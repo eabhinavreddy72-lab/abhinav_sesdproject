@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b4e">
+  <meta name="description" content="Student sign in for CanteenGo at SR University.">
+  <title>Student Login | CanteenGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/student-flow.css">
+  <script src="js/canteengo-data.js" defer></script>
+  <script src="js/student-auth.js" defer></script>
+</head>
+<body>
+  <header class="flow-header">
+    <nav class="flow-nav" aria-label="Main navigation">
+      <a class="flow-brand" href="index.html" aria-label="CanteenGo home">
+        <span class="flow-brand-icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
+        <span class="flow-brand-copy"><strong>Canteen<span>Go</span></strong><small>SR UNIVERSITY</small></span>
+      </a>
+      <div class="flow-nav-links">
+        <a href="index.html">Home</a>
+        <a href="student/menu.html">Explore Menu</a>
+        <a href="register.html">Register</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flow-main">
+    <div class="flow-heading">
+      <p class="flow-eyebrow">SR UNIVERSITY · STUDENT ACCOUNT</p>
+      <h1>Welcome back</h1>
+      <p>Sign in with your registered Student ID or university email to continue.</p>
+    </div>
+    <section class="flow-card flow-card-pad" aria-labelledby="login-title">
+      <h2 id="login-title" class="flow-section-title">Student Login</h2>
+      <div class="flow-message" id="form-message" role="status" aria-live="polite" hidden></div>
+      <form id="student-auth-form" data-mode="login">
+        <div class="flow-grid">
+          <div class="flow-field flow-field-full">
+            <label for="identity">Student ID or registered email</label>
+            <input id="identity" name="identity" type="text" autocomplete="username" required maxlength="120" placeholder="Student ID or email">
+          </div>
+          <div class="flow-field flow-field-full">
+            <label for="password">Password</label>
+            <div class="flow-password-wrap">
+              <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="128" placeholder="Enter your password">
+              <button class="flow-password-toggle" type="button" data-password-toggle="password" aria-label="Show password">Show</button>
+            </div>
+          </div>
+        </div>
+        <div class="flow-actions">
+          <button class="flow-button" type="submit"><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i> Sign in</button>
+          <a class="flow-button flow-button-secondary" href="register.html">Create account</a>
+        </div>
+      </form>
+      <p class="flow-demo-note">Academic demo only: accounts are stored in this browser's localStorage. Do not use a real or reused password. This is not production authentication.</p>
+      <p class="flow-switch">New to CanteenGo? <a href="register.html">Register as a student</a>.</p>
+    </section>
+  </main>
+  <footer class="flow-footer">CanteenGo · SR University campus canteen</footer>
+</body>
+</html>

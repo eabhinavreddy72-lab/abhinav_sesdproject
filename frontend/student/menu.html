@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b4e">
+  <meta name="description" content="Browse the SR University CanteenGo menu, filter campus favourites and save your cart.">
+  <title>Explore Menu | CanteenGo - SR University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/menu.css">
+  <script src="../js/canteengo-data.js" defer></script>
+  <script src="../js/menu.js" defer></script>
+</head>
+<body class="menu-page">
+  <header class="menu-header">
+    <div class="menu-topline">
+      <div class="menu-container menu-topline-inner">
+        <span><i class="fa-solid fa-location-dot" aria-hidden="true"></i> SR University Campus Canteen</span>
+        <span>Fresh favourites, ready for your break</span>
+      </div>
+    </div>
+    <nav class="menu-nav menu-container" aria-label="Main navigation">
+      <a class="menu-brand" href="../index.html" aria-label="CanteenGo home">
+        <span class="menu-brand-icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
+        <span><strong>Canteen<span>Go</span></strong><small>SR UNIVERSITY</small></span>
+      </a>
+      <button class="menu-nav-toggle" id="menu-nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="menu-nav-links">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+      <div class="menu-nav-links" id="menu-nav-links">
+        <a href="../index.html">Home</a>
+        <a class="is-current" href="menu.html" aria-current="page">Explore Menu</a>
+        <a href="../login.html">Student Login</a>
+        <a href="../register.html">Register</a>
+      </div>
+      <button class="cart-indicator" id="cart-toggle" type="button" aria-label="Open cart, 0 items" aria-expanded="false" aria-controls="cart-drawer">
+        <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+        <span class="cart-indicator-label">Cart</span>
+        <span class="cart-count" id="cart-count" aria-live="polite">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="menu-hero">
+      <div class="menu-container menu-hero-inner">
+        <div class="menu-hero-copy">
+          <p class="menu-eyebrow"><span></span> THE SR UNIVERSITY CANTEEN MENU</p>
+          <h1>Your next<br><em>campus favourite.</em></h1>
+          <p>Freshly made, campus loved. Find something good for your next break.</p>
+        </div>
+        <div class="menu-hero-art" aria-hidden="true">
+          <span class="hero-art-circle"></span>
+          <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&amp;fit=crop&amp;w=650&amp;q=85" alt="" fetchpriority="high">
+          <span class="hero-art-note"><i class="fa-solid fa-utensils"></i> Made for campus life</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-main-section" aria-labelledby="menu-heading">
+      <div class="menu-container">
+        <div class="menu-toolbar">
+          <label class="menu-search" for="food-search">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <input id="food-search" type="search" placeholder="Search biryani, dosa, snacks..." autocomplete="off">
+            <kbd>Ctrl K</kbd>
+          </label>
+          <div class="toolbar-controls">
+            <label class="select-control">
+              <span class="sr-only">Filter by food type</span>
+              <i class="fa-solid fa-sliders" aria-hidden="true"></i>
+              <select id="diet-filter">
+                <option value="all">All food types</option>
+                <option value="veg">Vegetarian</option>
+                <option value="non-veg">Non-vegetarian</option>
+              </select>
+            </label>
+            <label class="select-control">
+              <span class="sr-only">Sort food items</span>
+              <i class="fa-solid fa-arrow-down-wide-short" aria-hidden="true"></i>
+              <select id="sort-select">
+                <option value="recommended">Recommended</option>
+                <option value="price-low">Price: Low to high</option>
+                <option value="price-high">Price: High to low</option>
+                <option value="rating">Top rated</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="category-bar">
+          <div class="category-heading">
+            <span>Browse categories</span>
+            <small>Pick your mood</small>
+          </div>
+          <div class="category-tabs" id="category-tabs" role="group" aria-label="Food categories">
+            <button type="button" class="category-tab is-active" data-category="all" aria-pressed="true">All menu</button>
+            <button type="button" class="category-tab" data-category="Breakfast" aria-pressed="false">Breakfast</button>
+            <button type="button" class="category-tab" data-category="Lunch" aria-pressed="false">Lunch</button>
+            <button type="button" class="category-tab" data-category="Biryani" aria-pressed="false">Biryani</button>
+            <button type="button" class="category-tab" data-category="Fast Food" aria-pressed="false">Fast Food</button>
+            <button type="button" class="category-tab" data-category="Snacks" aria-pressed="false">Snacks</button>
+            <button type="button" class="category-tab" data-category="Beverages" aria-pressed="false">Beverages</button>
+          </div>
+        </div>
+
+        <div class="menu-section-heading">
+          <div>
+            <p class="menu-eyebrow"><span></span> GOOD FOOD, RIGHT ON CAMPUS</p>
+            <h2 id="menu-heading">Explore the menu</h2>
+          </div>
+          <p class="results-count" id="results-count" aria-live="polite">Loading food...</p>
+        </div>
+
+        <div class="food-grid" id="food-grid" aria-live="polite"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span class="empty-state-icon"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i></span>
+          <h3>No matching dishes</h3>
+          <p>Try another search or choose a different category.</p>
+          <button type="button" class="menu-button menu-button-outline" id="clear-filters">Clear filters</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="menu-footer">
+    <div class="menu-container menu-footer-inner">
+      <a class="menu-brand menu-brand-footer" href="../index.html">
+        <span class="menu-brand-icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
+        <span><strong>Canteen<span>Go</span></strong><small>SR UNIVERSITY</small></span>
+      </a>
+      <p>Campus canteen, made convenient.</p>
+      <div class="menu-footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../login.html">Student Login</a>
+        <a href="../register.html">Register</a>
+      </div>
+    </div>
+    <div class="menu-container menu-footer-bottom">© <span id="current-year">2026</span> CanteenGo · SR University</div>
+  </footer>
+
+  <button class="cart-backdrop" id="cart-backdrop" type="button" aria-label="Close cart" hidden></button>
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Shopping cart" aria-hidden="true" hidden>
+    <div class="cart-drawer-header">
+      <div>
+        <p class="menu-eyebrow"><span></span> YOUR ORDER</p>
+        <h2>Your cart <span id="drawer-count">(0)</span></h2>
+      </div>
+      <button class="icon-button" id="cart-close" type="button" aria-label="Close cart"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    </div>
+    <div class="cart-empty" id="cart-empty">
+      <span class="empty-state-icon"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i></span>
+      <h3>Your cart is waiting</h3>
+      <p>Add a campus favourite and it will show up here.</p>
+      <button class="menu-button menu-button-outline" id="continue-browsing" type="button">Explore the menu</button>
+    </div>
+    <div class="cart-lines" id="cart-lines"></div>
+    <div class="cart-drawer-footer" id="cart-drawer-footer" hidden>
+      <div class="cart-total-row"><span>Subtotal</span><strong id="cart-total">₹0</strong></div>
+      <p class="cart-login-note" id="cart-login-note">You can browse freely. Sign in is required to continue.</p>
+      <button class="menu-button menu-button-primary checkout-button" id="checkout-button" type="button">
+        Continue to checkout <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      </button>
+      <button class="clear-cart-button" id="clear-cart" type="button">Remove all items</button>
+    </div>
+  </aside>
+  <div class="menu-toast" id="menu-toast" role="status" aria-live="polite"></div>
+</body>
+</html>

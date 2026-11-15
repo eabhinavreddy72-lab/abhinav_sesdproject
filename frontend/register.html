@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b4e">
+  <meta name="description" content="Create a student CanteenGo demo account for SR University.">
+  <title>Student Registration | CanteenGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="css/student-flow.css">
+  <link rel="stylesheet" href="css/splash.css">
+  <script src="js/canteengo-data.js" defer></script>
+  <script src="js/splash.js" defer></script>
+  <script src="js/student-auth.js" defer></script>
+</head>
+<body class="intro-pending">
+  <div id="splash-root" data-splash-page="registration" data-logo-src="assets/sru-logo.png"></div>
+  <noscript><style>body.intro-pending > :not(#splash-root) { opacity: 1 !important; visibility: visible !important; } #splash-root { display: none !important; }</style></noscript>
+  <header class="flow-header">
+    <nav class="flow-nav" aria-label="Main navigation">
+      <a class="flow-brand" href="index.html" aria-label="CanteenGo home">
+        <span class="flow-brand-icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
+        <span class="flow-brand-copy"><strong>Canteen<span>Go</span></strong><small>SR UNIVERSITY</small></span>
+      </a>
+      <div class="flow-nav-links">
+        <a href="index.html">Home</a>
+        <a href="student/menu.html">Explore Menu</a>
+        <a href="login.html">Student Login</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flow-main">
+    <div class="flow-heading">
+      <p class="flow-eyebrow">SR UNIVERSITY · STUDENT ACCOUNT</p>
+      <h1>Create your account</h1>
+      <p>Register once to save your details and place a campus canteen pre-order.</p>
+    </div>
+    <section class="flow-card flow-card-pad" aria-labelledby="registration-title">
+      <h2 id="registration-title" class="flow-section-title">Student registration</h2>
+      <div class="flow-message" id="form-message" role="status" aria-live="polite" hidden></div>
+      <form id="student-auth-form" data-mode="register">
+        <div class="flow-grid">
+          <div class="flow-field flow-field-full">
+            <label for="full-name">Full name</label>
+            <input id="full-name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Enter your full name">
+          </div>
+          <div class="flow-field">
+            <label for="student-id">Student ID / Roll number</label>
+            <input id="student-id" name="studentId" type="text" autocomplete="username" required minlength="3" maxlength="32" pattern="[A-Za-z0-9\-]+" title="Use letters, numbers, and hyphens only" placeholder="e.g. SRU24CS001">
+          </div>
+          <div class="flow-field">
+            <label for="university-email">University email</label>
+            <input id="university-email" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="name@university.edu">
+          </div>
+          <div class="flow-field">
+            <label for="mobile">Mobile number</label>
+            <input id="mobile" name="mobile" type="tel" inputmode="numeric" autocomplete="tel-national" required pattern="[6-9][0-9]{9}" maxlength="10" title="Enter a 10-digit Indian mobile number" placeholder="10-digit mobile number">
+          </div>
+          <div class="flow-field">
+            <label for="department">Department</label>
+            <select id="department" name="department" required>
+              <option value="">Select department</option>
+              <option>Computer Science and Engineering</option>
+              <option>Electronics and Communication Engineering</option>
+              <option>Electrical and Electronics Engineering</option>
+              <option>Mechanical Engineering</option>
+              <option>Civil Engineering</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="flow-field">
+            <label for="year">Year of study</label>
+            <select id="year" name="year" required>
+              <option value="">Select year</option>
+              <option value="1">Year 1</option>
+              <option value="2">Year 2</option>
+              <option value="3">Year 3</option>
+              <option value="4">Year 4</option>
+            </select>
+          </div>
+          <div class="flow-field">
+            <label for="password">Password</label>
+            <div class="flow-password-wrap">
+              <input id="password" name="password" type="password" autocomplete="new-password" required minlength="8" maxlength="128" placeholder="At least 8 characters">
+              <button class="flow-password-toggle" type="button" data-password-toggle="password" aria-label="Show password">Show</button>
+            </div>
+            <small class="flow-help">Demo-only credential stored in this browser.</small>
+          </div>
+          <div class="flow-field">
+            <label for="confirm-password">Confirm password</label>
+            <div class="flow-password-wrap">
+              <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" required minlength="8" maxlength="128" placeholder="Re-enter your password">
+              <button class="flow-password-toggle" type="button" data-password-toggle="confirm-password" aria-label="Show password">Show</button>
+            </div>
+          </div>
+        </div>
+        <div class="flow-actions">
+          <button class="flow-button" type="submit"><i class="fa-solid fa-user-plus" aria-hidden="true"></i> Create account</button>
+          <a class="flow-button flow-button-secondary" href="login.html">Student Login</a>
+        </div>
+      </form>
+      <p class="flow-demo-note">Academic demo only: this page stores registration details in localStorage on this device. It is not production authentication and should not be used for real credentials.</p>
+      <p class="flow-switch">Already registered? <a href="login.html">Sign in to CanteenGo</a>.</p>
+    </section>
+  </main>
+  <footer class="flow-footer">CanteenGo · SR University campus canteen</footer>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b4e">
+  <meta name="description" content="Review your CanteenGo order and choose a campus pickup slot.">
+  <title>Checkout | CanteenGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../css/student-flow.css">
+  <script src="../js/canteengo-data.js" defer></script>
+  <script src="../js/checkout.js" defer></script>
+</head>
+<body>
+  <header class="flow-header">
+    <nav class="flow-nav" aria-label="Main navigation">
+      <a class="flow-brand" href="../index.html" aria-label="CanteenGo home">
+        <span class="flow-brand-icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
+        <span class="flow-brand-copy"><strong>Canteen<span>Go</span></strong><small>SR UNIVERSITY</small></span>
+      </a>
+      <div class="flow-nav-links">
+        <a href="menu.html">Menu</a>
+        <a href="dashboard.html">My Dashboard</a>
+        <button class="flow-remove" id="logout-button" type="button">Sign out</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flow-main">
+    <div class="flow-heading">
+      <p class="flow-eyebrow">YOUR CAMPUS ORDER</p>
+      <h1>Checkout</h1>
+      <p>Review your cart, choose a pickup slot, and select how you will pay at the canteen.</p>
+    </div>
+    <div class="flow-message" id="checkout-message" role="status" aria-live="polite" hidden></div>
+    <div class="flow-layout" id="checkout-content">
+      <div class="flow-stack">
+        <section class="flow-card flow-card-pad" aria-labelledby="student-details-title">
+          <div class="flow-section-title">
+            <h2 id="student-details-title">Student details</h2>
+            <a class="flow-muted" href="dashboard.html">Dashboard</a>
+          </div>
+          <div class="flow-receipt-meta" id="student-summary"></div>
+        </section>
+
+        <section class="flow-card flow-card-pad" aria-labelledby="cart-title">
+          <div class="flow-section-title">
+            <h2 id="cart-title">Your items</h2>
+            <a class="flow-muted" href="menu.html">Edit menu</a>
+          </div>
+          <div id="checkout-items"></div>
+        </section>
+
+        <form class="flow-card flow-card-pad" id="checkout-form">
+          <section aria-labelledby="pickup-title">
+            <div class="flow-section-title"><h2 id="pickup-title">Scheduled pickup</h2></div>
+            <div class="flow-grid">
+              <div class="flow-field">
+                <label for="pickup-date">Pickup date</label>
+                <input id="pickup-date" name="pickupDate" type="date" required>
+              </div>
+              <div class="flow-field">
+                <label for="pickup-time">Available time slot</label>
+                <select id="pickup-time" name="pickupTime" required>
+                  <option value="">Select a pickup slot</option>
+                  <option>10:30 AM – 11:00 AM</option>
+                  <option>11:00 AM – 11:30 AM</option>
+                  <option>11:30 AM – 12:00 PM</option>
+                  <option>12:00 PM – 12:30 PM</option>
+                  <option>12:30 PM – 1:00 PM</option>
+                  <option>1:00 PM – 1:30 PM</option>
+                  <option>1:30 PM – 2:00 PM</option>
+                  <option>2:00 PM – 2:30 PM</option>
+                  <option>3:00 PM – 3:30 PM</option>
+                  <option>3:30 PM – 4:00 PM</option>
+                  <option>4:00 PM – 4:30 PM</option>
+                </select>
+              </div>
+              <div class="flow-field flow-field-full">
+                <label for="instructions">Special instructions <span class="flow-muted">(optional)</span></label>
+                <textarea id="instructions" name="instructions" maxlength="300" placeholder="Add a note for the canteen"></textarea>
+              </div>
+            </div>
+          </section>
+
+          <section class="flow-payment-section" aria-labelledby="payment-title">
+            <div class="flow-section-title"><h2 id="payment-title">Payment method</h2></div>
+            <div class="flow-radio-list">
+              <label class="flow-radio">
+                <input type="radio" name="paymentMethod" value="offline" checked>
+                <span><strong>Pay at Canteen</strong><small>Pay using cash or another accepted method when collecting your order.</small></span>
+              </label>
+              <label class="flow-radio">
+                <input type="radio" name="paymentMethod" value="online">
+                <span><strong>Online Payment</strong><small>Continue to a local simulated payment page. No real payment is made.</small></span>
+              </label>
+            </div>
+            <div class="flow-message" id="online-payment-note" role="status" aria-live="polite" tabindex="-1" hidden>
+              Next: a clearly labelled local simulator. No order or pickup token is created until its simulated success result.
+            </div>
+          </section>
+
+          <div class="flow-actions">
+            <button class="flow-button" id="confirm-order-button" type="submit"><i class="fa-solid fa-check" aria-hidden="true"></i> Confirm Order</button>
+            <a class="flow-button flow-button-secondary" href="menu.html">Back to Menu</a>
+          </div>
+        </form>
+      </div>
+
+      <aside class="flow-card flow-card-pad" aria-labelledby="summary-title">
+        <div class="flow-section-title"><h2 id="summary-title">Order summary</h2></div>
+        <div class="flow-total-row"><span>Subtotal</span><strong id="subtotal">₹0</strong></div>
+        <div class="flow-total-row"><span>Applicable charges</span><strong id="charges">₹0</strong></div>
+        <div class="flow-total-row flow-total-grand"><span>Total payable</span><strong id="grand-total">₹0</strong></div>
+        <p class="flow-demo-note">Online payment is simulated locally for this academic demo. Pay-at-canteen orders remain pending until pickup.</p>
+      </aside>
+    </div>
+    <div class="flow-empty" id="empty-cart" hidden>
+      <p>Your cart is empty. Add a campus favourite before checkout.</p>
+      <a class="flow-button" href="menu.html">Explore Menu</a>
+    </div>
+  </main>
+  <footer class="flow-footer">CanteenGo · SR University campus canteen</footer>
+</body>
+</html>

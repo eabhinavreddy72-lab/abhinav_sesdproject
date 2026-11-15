@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b4e">
+  <meta name="description" content="CanteenGo order confirmation, payment status and pickup token.">
+  <title>Order Confirmation | CanteenGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="../css/student-flow.css">
+  <script src="../js/canteengo-data.js" defer></script>
+  <script src="../js/order-confirmation.js" defer></script>
+</head>
+<body>
+  <header class="flow-header flow-no-print">
+    <nav class="flow-nav" aria-label="Main navigation">
+      <a class="flow-brand" href="../index.html" aria-label="CanteenGo home">
+        <span class="flow-brand-icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
+        <span class="flow-brand-copy"><strong>Canteen<span>Go</span></strong><small>SR UNIVERSITY</small></span>
+      </a>
+      <div class="flow-nav-links">
+        <a href="menu.html">Menu</a>
+        <a href="dashboard.html">My Dashboard</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flow-main">
+    <div class="flow-message" id="confirmation-message" role="status" aria-live="polite" hidden></div>
+    <section class="flow-card flow-receipt" id="receipt" aria-labelledby="confirmation-title" hidden>
+      <div class="flow-receipt-header">
+        <p class="flow-eyebrow">SR UNIVERSITY CAMPUS CANTEEN</p>
+        <h1 id="confirmation-title">Your order is placed</h1>
+        <p>Show your pickup token when you collect your order.</p>
+        <div class="flow-token" id="pickup-token"></div>
+      </div>
+      <div class="flow-receipt-body">
+        <div class="flow-receipt-meta" id="order-details"></div>
+        <table class="flow-table">
+          <thead>
+            <tr><th>Item</th><th>Qty</th><th>Price</th><th>Total</th></tr>
+          </thead>
+          <tbody id="receipt-items"></tbody>
+        </table>
+        <div class="flow-receipt-totals">
+          <div class="flow-total-row"><span>Subtotal</span><strong id="receipt-subtotal">₹0</strong></div>
+          <div class="flow-total-row"><span>Applicable charges</span><strong id="receipt-charges">₹0</strong></div>
+          <div class="flow-total-row flow-total-grand"><span>Total amount</span><strong id="receipt-total">₹0</strong></div>
+        </div>
+        <div class="flow-section-title flow-receipt-status"><h2>Order status</h2><span class="flow-badge" id="order-status"></span></div>
+        <ol class="flow-status-list" id="order-status-list"></ol>
+        <div class="flow-actions flow-no-print flow-receipt-actions">
+          <button class="flow-button" id="print-receipt" type="button"><i class="fa-solid fa-print" aria-hidden="true"></i> Print Receipt</button>
+          <a class="flow-button flow-button-secondary" href="menu.html">Back to Menu</a>
+          <a class="flow-button flow-button-secondary" href="dashboard.html">View My Orders</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="flow-footer flow-no-print">CanteenGo · SR University campus canteen</footer>
+</body>
+</html>
